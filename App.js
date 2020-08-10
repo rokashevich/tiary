@@ -17,11 +17,11 @@ var categories_tree = [
   }
 ]
 
-const TiaryIcon = (props) => {
-  return (
-    <Image source={Icons[props.src].src} style={{width:48, height:48}} />
-  );
-}
+// const TiaryIcon = (props) => {
+//   return (
+//     <Image source={Icons[props.src].src} style={{width:48, height:48}} />
+//   );
+// }
 
 export default function App() {
   return (
@@ -30,19 +30,19 @@ export default function App() {
         
         
         <TouchableOpacity>
-          <Backetball />
+          <Backetball color="red"/>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Car />
+          <Car color="green"/>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Food />
+          <Food color="orange"/>
         </TouchableOpacity>
         <TouchableOpacity>
-          <School />
+          <School color="blue"/>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Cog />
+          <Cog color="black"/>
         </TouchableOpacity>
 
 
