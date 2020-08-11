@@ -23,24 +23,30 @@ var categories_tree = [
 //   );
 // }
 
-var tmp_buttons = ["Backetball", "Car", "Food", "School", "Cog"]
+const ButtonsRow = () => {
+  var tmp_buttons = [
+    {"name":"Backetball", "color":"red"}, 
+    {"name":"Car", "color":"green"}, 
+    {"name":"Food", "color":"blue"}, 
+    {"name":"School", "color":"yellow"}, 
+    {"name":"Cog", "color":"gray"}
+  ]
+  return  (
+      tmp_buttons.map(button => (  
+        <TouchableOpacity>
+          <Icons name={button.name} color={button.color}/>
+        </TouchableOpacity>
+      ))
+  )
+}
 
 export default function App() {
   return (
     <View style={{flex: 1}}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{flexGrow: 0,backgroundColor: '#ffffff'}}>
-        
-        
-        <TouchableOpacity>
-          <Icons name={tmp_buttons[0]} color="blue"/>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Icons name={tmp_buttons[1]} color="orange"/>
-        </TouchableOpacity>
-        
-
-
+        <ButtonsRow/>
       </ScrollView>
+
       <ScrollView style={{flex: 1, backgroundColor: '#fafafa'}}>
         <Text>width={Dimensions.get('window').width} ratio={PixelRatio.get()}</Text>
         <Text>width={Dimensions.get('window').width} ratio={PixelRatio.get()}</Text>
