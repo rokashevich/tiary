@@ -3,7 +3,7 @@ import { TouchableOpacity, Text, View, Image, ScrollView } from 'react-native';
 import { Dimensions, PixelRatio } from 'react-native';
 import Svg, {  Path,} from 'react-native-svg';
 
-import { Backetball, Car, School, Food, Cog } from './components/Icons'
+import { Icons, Backetball, Car, School, Food, Cog } from './components/Icons'
 
 var categories_tree = [
   {
@@ -23,6 +23,8 @@ var categories_tree = [
 //   );
 // }
 
+var tmp_buttons = ["Backetball", "Car", "Food", "School", "Cog"]
+
 export default function App() {
   return (
     <View style={{flex: 1}}>
@@ -30,20 +32,12 @@ export default function App() {
         
         
         <TouchableOpacity>
-          <Backetball color="red"/>
+          <Icons name={tmp_buttons[0]} color="blue"/>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Car color="green"/>
+          <Icons name={tmp_buttons[1]} color="orange"/>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Food color="orange"/>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <School color="blue"/>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Cog color="black"/>
-        </TouchableOpacity>
+        
 
 
       </ScrollView>
