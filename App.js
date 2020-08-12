@@ -5,19 +5,60 @@ import Svg, {  Path,} from 'react-native-svg';
 
 import { Icons, Backetball, Car, School, Food, Cog } from './components/Icons'
 
-var categories_tree = [
+// Всё дерево категорий хранится в единой структуре, т.к. он никогда не будет слишком большим в принципе.
+var nodes = [
   {
-    "title":"Basketball",
-    "description":"",
-    "icon":"basketball",
-    "categories":[]
+    "title":"Спорт",
+    "description":"Упражнения на силу, выносливость и растяжка",
+    "icon":"dumbbells",
+    "entries":[
+      {"title":"Подтягивания"},
+      {"title":"Отжимания"},
+      {"title":"Бёрпи"},
+      {"title":"Лодочка"},
+      {"title":"Пресс"},
+      {"title":"Растяжка"}
+    ]
   },
   {
-
+    "title":"Овощи",
+    "icon":"vegetables",
+    "entries":[
+      {"title":"Кабачок"},
+      {"title":"Свёкла"},
+      {"title":"Морковь"},
+      {"title":"Тыква"},
+    ]
+  },
+  {
+    "title":"Завтраки",
+    "icon":"porridge",
+    "entries":[
+      {"title":"Рис с яйцом"},
+      {"title":"Греча"},
+      {"title":"Овсянка, сэр!"},
+      {"title":"Полба"},
+    ]
+  },
+  {
+    "title":"Здоровье",
+    "icon":"porridge",
+    "entries":[
+      {"title":"Давление"},
+      {"title":"Пульс"}
+    ]
+  },
+  {
+    "title":"Авто",
+    "icon":"porridge",
+    "entries":[
+      {"title":"Топливо"},
+      {"title":"Прочее"}
+    ]
   }
 ]
 
-const ButtonsRow = () => {
+const ButtonsRow = (props) => {
   
   var tmp_buttons = [
     {"name":"Backetball", "color":"orange"}, 
@@ -39,6 +80,7 @@ const ButtonsRow = () => {
 }
 
 export default function App() {
+
   return (
     <View style={{flex: 1}}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{flexGrow: 0,backgroundColor: '#ffffff'}}>
