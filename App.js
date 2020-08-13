@@ -52,16 +52,24 @@ var nodes = [
   },
 ];
 
+var db = {
+11:"Basketball",
+12:"Car",
+13:"Food",
+14:"School",
+15:"Hospital"
+}
+
 //const ButtonsRow = (props) => {
 class ButtonsRow extends Component {
   render() {
     var tmp_buttons = [
-    { id: 1, name: 'Backetball', color: 'orange' },
-    { id: 2, name: 'Car', color: 'green' },
-    { id: 3,  name: 'Food', color: 'gray' },
-    { id: 4,  name: 'School', color: 'blue' },
-    { id: 5,  name: 'Hospital', color: 'red' },
-    { id: 6,  name: 'Cog', color: 'black' },
+    { id: 11, name: 'Backetball', color: 'orange' },
+    { id: 12, name: 'Car', color: 'green' },
+    { id: 13,  name: 'Food', color: 'gray' },
+    { id: 14,  name: 'School', color: 'blue' },
+    { id: 15,  name: 'Hospital', color: 'red' },
+    { id: 0,  name: 'Cog', color: 'black' },
   ];
   return tmp_buttons.map((button) => (
     <TouchableOpacity onPress={() => this.props.handler(button.id)}>
@@ -73,14 +81,15 @@ class ButtonsRow extends Component {
 }
 
 class App extends Component {
-
   constructor(props) {
     super(props)
     this.handler = this.handler.bind(this)
-  }  
+  }
 
+  state = {node:10}
   handler(id) {
-    console.log(id)
+    console.log(id,this.node)
+    this.setState({node:id})
   }
 
   render() {
@@ -94,6 +103,7 @@ class App extends Component {
         </ScrollView>
 
         <ScrollView style={{ flex: 1, backgroundColor: '#fafafa' }}>
+          <Text>{this.state.node}</Text>
           <Text>
             width={Dimensions.get('window').width} ratio={PixelRatio.get()}
           </Text>
