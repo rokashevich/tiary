@@ -71,9 +71,10 @@ class ButtonsRow extends Component {
     { id: 15,  name: 'Hospital', color: 'red' },
     { id: 0,  name: 'Cog', color: 'black' },
   ];
+  console.log(this.props.size)
   return tmp_buttons.map((button) => (
     <TouchableOpacity onPress={() => this.props.handler(button.id)}>
-      <Icons name={button.name} color={button.color} />
+      <Icons size={this.props.size} name={button.name} color={button.color}/>
     </TouchableOpacity>
   ));
   }
@@ -81,12 +82,28 @@ class ButtonsRow extends Component {
 }
 
 class App extends Component {
+  state = {
+    node: 10,
+    // iPad 1024 2
+    // Xiaomi A1 360 3
+    // iPhone 375 2
+    // Android 360 3
+    // Xiaomi Redmi 360 3
+    base_size: 48,
+    max_columns: 0,
+    column_width: 0
+  }
+
   constructor(props) {
     super(props)
     this.handler = this.handler.bind(this)
+    this.state.max_columns = Math.floor(
+      Dimensions.get('window').width / this.state.base_size)
+    this.state.column_width = this.state.base_size + Math.floor(
+      ( Dimensions.get('window').width - this.state.max_columns*this.state.base_size
+      ) / this.state.max_columns)
   }
 
-  state = {node:10}
   handler(id) {
     console.log(id,this.node)
     this.setState({node:id})
@@ -99,11 +116,14 @@ class App extends Component {
           horizontal
           showsHorizontalScrollIndicator={false}
           style={{ flexGrow: 0, backgroundColor: '#ffffff' }}>
-          <ButtonsRow handler = {this.handler} />
+          <ButtonsRow size={this.state.column_width} handler={this.handler} />
         </ScrollView>
 
         <ScrollView style={{ flex: 1, backgroundColor: '#fafafa' }}>
-          <Text>{this.state.node}</Text>
+          <Text>node={this.state.node}</Text>
+          <Text>base_size={this.state.base_size}</Text>
+          <Text>max_columns={this.state.max_columns}</Text>
+          <Text>column_width={this.state.column_width}</Text>
           <Text>
             width={Dimensions.get('window').width} ratio={PixelRatio.get()}
           </Text>
