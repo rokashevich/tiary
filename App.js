@@ -76,6 +76,7 @@ const ButtonsRow = (props) => {
         props.handler({ node: button.id })
       }}>
       <Icons name={button.name} color={button.color} />
+      <Text style={{position: 'absolute',bottom:0,right:0,background:button.color,color:'white'}}>{button.id}</Text>
     </TouchableOpacity>
   ))
 }
