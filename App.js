@@ -81,8 +81,23 @@ const ButtonsRow = (props) => {
   ))
 }
 
+const Tile = (props) => {
+  return (
+    <View style={{'width':props.geometry.size, 'height':props.geometry.size}} >
+      <Text>{props.geometry.size}</Text>
+    </View>
+  )
+}
+
 const App = () => {
   const [node, setNode] = useState({ node: 10 });
+  
+  // Размер тайла, кол-во колонок зависят от размера экранчика и плотности пикселей.
+  const base_size = 48;
+  const max_columns = Math.floor(Dimensions.get('window').width / base_size)
+  const tile_size = base_size + Math.floor(( Dimensions.get('window').width - max_columns*base_size ) / max_columns)
+  const [geometry, setGeometry] = useState({ size: tile_size });
+  
   return (
     <View style={{ flex: 1 }}>
       <ScrollView
@@ -99,6 +114,7 @@ const App = () => {
         <Text>
           width={Dimensions.get('window').width} ratio={PixelRatio.get()}
         </Text>
+        <Tile geometry={geometry}/>
       </ScrollView>
     </View>
   )
