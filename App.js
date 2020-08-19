@@ -82,6 +82,9 @@ const ButtonsRow = (props) => {
 }
 
 const Tile = (props) => {
+  const text_length = props.text.length
+  const font_size = props.geometry.size / (props.text.length>5?5:props.text.length)
+  const text = props.text.match(/.{1,5}/g).join("\n")
   return (
     <View style={{
       width:props.geometry.size,
@@ -93,8 +96,8 @@ const Tile = (props) => {
       alignItems: 'center',
       }} >
       <Text adjustsFontSizeToFit={true} minimumFontScale={0.01}
-        style={{color:'black', fontSize:props.geometry.size/4}}>
-        {props.text}
+        style={{color:'black', fontSize:font_size, textAlign: 'center'}}>
+        {text}
       </Text>
     </View>
   )
@@ -129,8 +132,12 @@ const App = () => {
         <Text>
           width={Dimensions.get('window').width} ratio={PixelRatio.get()}
         </Text>
+        <Tile geometry={geometry} text="W"/>
+        <Tile geometry={geometry} text="WW"/>
+        <Tile geometry={geometry} text="WWW"/>
         <Tile geometry={geometry} text="WWWW"/>
-        <Tile geometry={geometry} text="short"/>
+        <Tile geometry={geometry} text="WWWWWW"/>
+        <Tile geometry={geometry} text="WWWWWWWWWWWWWWW"/>
       </ScrollView>
     </View>
   )
