@@ -83,10 +83,24 @@ const ButtonsRow = (props) => {
 
 const Tile = (props) => {
   return (
-    <View style={{'width':props.geometry.size, 'height':props.geometry.size}} >
-      <Text>{props.geometry.size}</Text>
+    <View style={{
+      width:props.geometry.size,
+      height:props.geometry.size,
+      backgroundColor: 'gold',
+      borderWidth: 2,
+      borderColor: 'blue',
+      justifyContent: 'center',
+      alignItems: 'center',
+      }} >
+      <Text adjustsFontSizeToFit={true} minimumFontScale={0.01}
+        style={{color:'black', fontSize:props.geometry.size/4}}>
+        {props.text}
+      </Text>
     </View>
   )
+  /**
+   <Text style={{'background':'red',textAlign: 'center', alignSelf: 'stretch', width: props.geometry.size, height: props.geometry.size, padding: 0}}>{props.text} {props.geometry.size}</Text>
+   */
 }
 
 const App = () => {
@@ -110,11 +124,13 @@ const App = () => {
       <ScrollView
         style={{ flex: 1, backgroundColor: '#fafafa' }}
         stickyHeaderIndices={[0]}>
+        <Text>tile size = {tile_size}</Text>
         <Text>{node.node}</Text>
         <Text>
           width={Dimensions.get('window').width} ratio={PixelRatio.get()}
         </Text>
-        <Tile geometry={geometry}/>
+        <Tile geometry={geometry} text="WWWW"/>
+        <Tile geometry={geometry} text="short"/>
       </ScrollView>
     </View>
   )
