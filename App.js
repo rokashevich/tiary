@@ -5,13 +5,13 @@ import Svg, { Path } from 'react-native-svg';
 
 import { Icons, Backetball, Car, School, Food, Cog } from './components/Icons';
 
-import { TmpButtons, DATA } from './Db';
+import { Categories, DATA } from './Db';
 
 const ButtonsRow = (props) => {
 
-  const tmp_buttons = TmpButtons
+  const categories = Categories
 
-  return tmp_buttons.map((button) => (
+  return categories.map((button) => (
     <TouchableOpacity 
       onPress={() => {
         console.log(button.id)
