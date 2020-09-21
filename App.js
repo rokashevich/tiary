@@ -5,7 +5,7 @@ import Svg, { Path } from 'react-native-svg';
 
 import { Icons, Backetball, Car, School, Food, Cog } from './components/Icons';
 
-import { Categories, DATA } from './Db';
+import { Categories, Tables, DATA } from './Db';
 
 const ButtonsRow = (props) => {
 
@@ -41,18 +41,15 @@ const Tile = (props) => {
       }} >
       <Text adjustsFontSizeToFit={true} minimumFontScale={0.01}
         style={{color:'black', fontSize:font_size, textAlign: 'center'}}>
-        {props.geometry.pixels_left}
+        {text}
       </Text>
     </View>
   )
-  /**
-   <Text style={{'background':'red',textAlign: 'center', alignSelf: 'stretch', width: props.geometry.size, height: props.geometry.size, padding: 0}}>{props.text} {props.geometry.size}</Text>
-   */
 }
 
 const ValueRow = (props) => {
   return [0,1,2,3,4,5,6].map((i) => (
-    <Tile geometry={props.geometry} text="1" first={i==0?true:false}/>
+    <Tile geometry={props.geometry} text={props.values.name} first={i==0?true:false}/>
   ))
 }
 
@@ -75,7 +72,7 @@ const App = () => {
 
   const renderItem = ({ item }) => (
     <View horizontal style={{background:'#0000ff', flex:1, flexDirection: 'row', marginBottom: 0}}>
-      <ValueRow geometry={geometry}/> 
+      <ValueRow geometry={geometry} values={item}/> 
     </View>
     );
 
@@ -91,7 +88,7 @@ const App = () => {
 
       <FlatList
         style={{ flex: 1, backgroundColor: '#ccc' }}
-        data={DATA}
+        data={Categories}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
