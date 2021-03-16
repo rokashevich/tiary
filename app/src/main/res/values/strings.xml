@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Tiary</string>
+    <string name="button_label_button2">Button2</string>
+    <string name="button_label_button1">Button1</string>
+    <string name="count_initial_value">0</string>
+    <string name="toast_message">Hello Toast!</string>
 </resources>
