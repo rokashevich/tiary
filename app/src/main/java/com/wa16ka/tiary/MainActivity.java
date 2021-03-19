@@ -5,10 +5,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String LOG_TAG =
+            MainActivity.class.getSimpleName();
     private int mCount = 0;
     private TextView mShowCount;
     @Override
@@ -28,5 +31,11 @@ public class MainActivity extends AppCompatActivity {
         if (mShowCount!=null)mShowCount.setText(Integer.toString(mCount));
         Toast toast = Toast.makeText(this, R.string.toast_message, Toast.LENGTH_SHORT);
         toast.show();
+    }
+
+    public void launchSecondActivity(View view) {
+        Log.d(LOG_TAG, "Button clicked!");
+        Intent intent = new Intent(this, SecondActivity.class);
+        startActivity(intent);
     }
 }
