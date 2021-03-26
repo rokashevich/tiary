@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "tiary",
-    "slug": "snack-9deb5075-8d34-4a93-adf4-f84b48f0a020",
+    "slug": "tiary",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,6 +18,12 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
