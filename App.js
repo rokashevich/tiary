@@ -92,7 +92,7 @@ const App = () => {
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     style={{ flexGrow: 0, marginLeft: pixels_left }}>
-                    {/* <ButtonsRow geometry={geometry} /> */}
+                    <ButtonsRow geometry={geometry} />
                 </ScrollView>
 
                 <FlatList
@@ -102,7 +102,7 @@ const App = () => {
                     keyExtractor={item => item.id}
                 />
                 <Text style={{ position: 'absolute', textShadowColor: '#0ff', textShadowOffset: { width: -1, height: 1 } }}>
-                    active_tab_id={userSettings.setting1name}
+                    active_tab_idDEBUG={userSettings.setting1name}
                 </Text>
             </View>
         </AppContext.Provider>
