@@ -1,26 +1,24 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useContext } from 'react';
 import { TouchableOpacity, Text, View, Image, ScrollView, Dimensions, PixelRatio, FlatList } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-
 import { Icons, Backetball, Car, School, Food, Cog } from './Icons';
-
 import { Categories, Tables, DATA } from './Db';
+import AppContext from './AppContext';
 
 const ButtonsRow = (props) => {
 
     const categories = Categories
 
-    return categories.map((button) => (
+    return categories.map((item) => (
         <TouchableOpacity
             onPress={() => {
-                console.log(button.id)
-                props.handler({ node: button.id })
+                // console.log(item.id)
             }}
             style={{
                 background: 'gray'
             }}>
-            <Icons name={button.name} color={button.color} size={props.geometry.size} />
-            <Text style={{ position: 'absolute', bottom: 0, right: 0, background: button.color, color: 'white' }}>{button.id}</Text>
+            <Icons name={item.name} color={item.color} size={props.geometry.size} />
+            <Text style={{ position: 'absolute', bottom: 0, right: 0, background: item.color, color: 'white' }}>{item.id}</Text>
         </TouchableOpacity>
     ))
 }
@@ -52,8 +50,20 @@ const ValueRow = (props) => {
     ))
 }
 
+
 const App = () => {
-    const [node, setNode] = useState({ node: 10 });
+    const [setting1value, setSetting1value] = useState('initialValue1');
+    const [setting2value, setSetting2value] = useState(false);
+    const toggleSetting2 = () => {
+        setting3 ? setSetting2(true) : setSetting2value(false);
+    };
+    const userSettings = {
+        setting1name: setting1value,
+        setting2name: setting2value,
+        setSetting1value,
+        toggleSetting2,
+    };
+    // const myContext = useContext(AppContext);
 
     // Размер тайла, кол-во колонок зависят от размера экранчика и плотности пикселей.
     const base_size = 55
@@ -76,22 +86,26 @@ const App = () => {
     );
 
     return (
-        <View style={{ flex: 1, backgroundColor: 'cyan' }}>
-            <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                style={{ flexGrow: 0, marginLeft: pixels_left }}>
-                <ButtonsRow handler={setNode} geometry={geometry} />
-            </ScrollView>
+        <AppContext.Provider value={userSettings}>
+            <View style={{ flex: 1, backgroundColor: 'cyan' }}>
+                <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    style={{ flexGrow: 0, marginLeft: pixels_left }}>
+                    {/* <ButtonsRow geometry={geometry} /> */}
+                </ScrollView>
 
-            <FlatList
-                style={{ flex: 1, backgroundColor: '#ccc' }}
-                data={Categories}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-            />
-            <Text style={{ position: 'absolute', textShadowColor: '#0ff', textShadowOffset: { width: -1, height: 1 } }}>DEBUG OVERLAY</Text>
-        </View>
+                <FlatList
+                    style={{ flex: 1, backgroundColor: '#ccc' }}
+                    data={Categories}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id}
+                />
+                <Text style={{ position: 'absolute', textShadowColor: '#0ff', textShadowOffset: { width: -1, height: 1 } }}>
+                    active_tab_id={userSettings.setting1name}
+                </Text>
+            </View>
+        </AppContext.Provider>
     )
 }
 
