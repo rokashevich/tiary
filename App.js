@@ -101,11 +101,7 @@ const App = () => {
                     keyExtractor={item => item.id}
                 />
                 <Text style={{ position: 'absolute', textShadowColor: '#0ff', textShadowOffset: { width: -1, height: 1 } }}>
-<<<<<<< HEAD
                     tabId={userSettings.tabId}
-=======
-                    active_tab_idDEBUG={userSettings.setting1name}
->>>>>>> 1ae4318716ae5c1b69e2b847775ad90a8020997f
                 </Text>
             </View>
         </AppContext.Provider>
