@@ -6,17 +6,13 @@ import { Categories, Tables, DATA } from './Db';
 import AppContext from './AppContext';
 
 const ButtonsRow = (props) => {
-
+    const c = useContext(AppContext);
     const categories = Categories
 
     return categories.map((item) => (
         <TouchableOpacity
-            onPress={() => {
-                // console.log(item.id)
-            }}
-            style={{
-                background: 'gray'
-            }}>
+            onPress={() => { c.setTabId(item.id) }}
+            style={{ background: item.id == c.tabId ? 'gray' : 'darkgray' }}>
             <Icons name={item.name} color={item.color} size={props.geometry.size} />
             <Text style={{ position: 'absolute', bottom: 0, right: 0, background: item.color, color: 'white' }}>{item.id}</Text>
         </TouchableOpacity>
@@ -52,14 +48,17 @@ const ValueRow = (props) => {
 
 
 const App = () => {
+    const [tabId, setTabId] = useState(666)
     const [setting1value, setSetting1value] = useState('initialValue1');
     const [setting2value, setSetting2value] = useState(false);
     const toggleSetting2 = () => {
         setting3 ? setSetting2(true) : setSetting2value(false);
     };
     const userSettings = {
+        tabId: tabId,
         setting1name: setting1value,
         setting2name: setting2value,
+        setTabId,
         setSetting1value,
         toggleSetting2,
     };
@@ -102,7 +101,11 @@ const App = () => {
                     keyExtractor={item => item.id}
                 />
                 <Text style={{ position: 'absolute', textShadowColor: '#0ff', textShadowOffset: { width: -1, height: 1 } }}>
+<<<<<<< HEAD
+                    tabId={userSettings.tabId}
+=======
                     active_tab_idDEBUG={userSettings.setting1name}
+>>>>>>> 1ae4318716ae5c1b69e2b847775ad90a8020997f
                 </Text>
             </View>
         </AppContext.Provider>
