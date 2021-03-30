@@ -1,15 +1,36 @@
-import React, { Component, useState, useContext } from 'react';
-import { TouchableOpacity, Text, View, Image, ScrollView, Dimensions, PixelRatio, FlatList } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
-import { Icons, Backetball, Car, School, Food, Cog } from './Icons';
-import { Categories, Tables, DATA } from './Db';
+import React, { useState, useContext } from 'react';
+import { TouchableOpacity, Text, View, ScrollView, Dimensions, FlatList } from 'react-native';
+import { Icons } from './Icons';
+import { Categories } from './Db';
 import AppContext from './AppContext';
 
-const ButtonsRow = () => {
+const Tile = (props) => {
     const context = useContext(AppContext);
-    const categories = Categories
 
-    return categories.map((item) => (
+    const size = context.tileSize
+    const text_length = props.text.length
+    const font_size = size / (props.text.length > 5 ? 5 : props.text.length)
+    const text = props.text.match(/.{1,5}/g).join("\n")
+    return <View style={{
+        width: size,
+        height: size,
+        backgroundColor: 'darkgray',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 1
+    }} >
+        <Text adjustsFontSizeToFit={true} minimumFontScale={0.01}
+            style={{ color: 'black', fontSize: font_size, textAlign: 'center' }}>
+            {text}
+        </Text>
+    </View>
+
+}
+
+
+const HeaderButtons = () => {
+    const context = useContext(AppContext);
+    return Categories.map((item) => (
         <TouchableOpacity
             onPress={() => { context.setTabId(item.id) }}
             style={{ background: item.id == context.tabId ? 'gray' : 'darkgray' }}>
@@ -19,35 +40,40 @@ const ButtonsRow = () => {
     ))
 }
 
-const Tile = (props) => {
-    const context = useContext(AppContext);
-    const size = context.tileSize
+const Header = () => {
 
-    const text_length = props.text.length
-    const font_size = size / (props.text.length > 5 ? 5 : props.text.length)
-    const text = props.text.match(/.{1,5}/g).join("\n")
-    return (
-        <View style={{
-            width: size,
-            height: size,
-            backgroundColor: 'darkgray',
-            justifyContent: 'center',
-            alignItems: 'center',
-        }} >
-            <Text adjustsFontSizeToFit={true} minimumFontScale={0.01}
-                style={{ color: 'black', fontSize: font_size, textAlign: 'center' }}>
-                {text}
-            </Text>
-        </View>
-    )
+    return <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={{ flexGrow: 0 }}>
+        <HeaderButtons />
+    </ScrollView>
 }
 
-const ValueRow = (props) => {
+const TableRow = (props) => {
     return [0, 1, 2, 3, 4, 5, 6].map((i) => (
         <Tile text={props.values.name} first={i == 0 ? true : false} />
     ))
 }
 
+const Table = () => {
+    const renderItem = ({ item }) => <View horizontal style={{ flexDirection: 'row' }}>
+        <TableRow values={item} />
+    </View>
+    return <FlatList
+        style={{ borderWidth: 1 }}
+        data={Categories}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+    />
+}
+
+const DebugBar = () => {
+    const context = useContext(AppContext);
+    return <Text style={{ position: 'absolute', textShadowColor: '#f0f', textShadowOffset: { width: -1, height: 1 } }}>
+        tabId={context.tabId}
+    </Text>
+}
 
 const App = () => {
     const [tileSize, setTabSize] = useState(50)
@@ -66,44 +92,18 @@ const App = () => {
         setSetting1value,
         toggleSetting2,
     };
-    // const myContext = useContext(AppContext);
-
-    // Размер тайла, кол-во колонок зависят от размера экранчика и плотности пикселей.
-    const base_size = userSettings.tileSize
-    const screen_width = Dimensions.get('window').width
-    const max_columns = Math.floor(screen_width / base_size)
-    const tile_size = Math.floor(screen_width / max_columns)
-    const pixels_left = screen_width - tile_size * max_columns
-
-
-    const renderItem = ({ item }) => (
-        <View horizontal style={{ background: '#0000ff', flex: 1, flexDirection: 'row', marginBottom: 0 }}>
-            <ValueRow values={item} />
+    // const base_size = userSettings.tileSize
+    // const screen_width = Dimensions.get('window').width
+    // const max_columns = Math.floor(screen_width / base_size)
+    // const tile_size = Math.floor(screen_width / max_columns)
+    // const pixels_left = screen_width - tile_size * max_columns
+    return <AppContext.Provider value={userSettings}>
+        <View>
+            <Header />
+            <Table />
+            <DebugBar />
         </View>
-    );
-
-    return (
-        <AppContext.Provider value={userSettings}>
-            <View style={{ flex: 1, backgroundColor: 'cyan' }}>
-                <ScrollView
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    style={{ flexGrow: 0, marginLeft: pixels_left }}>
-                    <ButtonsRow />
-                </ScrollView>
-
-                <FlatList
-                    style={{ flex: 1, backgroundColor: '#ccc' }}
-                    data={Categories}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.id}
-                />
-                <Text style={{ position: 'absolute', textShadowColor: '#0ff', textShadowOffset: { width: -1, height: 1 } }}>
-                    tabId={userSettings.tabId}
-                </Text>
-            </View>
-        </AppContext.Provider>
-    )
+    </AppContext.Provider>
 }
 
 export default App;
