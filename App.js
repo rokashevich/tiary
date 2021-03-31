@@ -17,7 +17,12 @@ const Tile = (props) => {
         backgroundColor: 'darkgray',
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 1
+        borderBottomWidth: 1,
+        borderBottomColor: 'white',
+        borderRightWidth: 1,
+        borderRightColor: 'white',
+        borderLeftWidth: props.first ? 1 : 0,
+        borderLeftColor: 'white'
     }} >
         <Text adjustsFontSizeToFit={true} minimumFontScale={0.01}
             style={{ color: 'black', fontSize: font_size, textAlign: 'center' }}>
@@ -61,7 +66,7 @@ const Table = () => {
         <TableRow values={item} />
     </View>
     return <FlatList
-        style={{ borderWidth: 1 }}
+        style={{}}
         data={Categories}
         renderItem={renderItem}
         keyExtractor={item => item.id}
@@ -70,7 +75,7 @@ const Table = () => {
 
 const DebugBar = () => {
     const context = useContext(AppContext);
-    return <Text style={{ position: 'absolute', textShadowColor: '#f0f', textShadowOffset: { width: -1, height: 1 } }}>
+    return <Text style={{ position: 'absolute', textShadowColor: '#fff', textShadowOffset: { width: -1, height: 1 } }}>
         tabId={context.tabId}
     </Text>
 }
