@@ -4,7 +4,7 @@ import { Icons } from './Icons';
 import { Categories } from './Db';
 import AppContext from './AppContext';
 
-const Tile = (props) => {
+const TileOld = (props) => {
     const context = useContext(AppContext);
 
     const size = context.tileSize
@@ -32,8 +32,44 @@ const Tile = (props) => {
 
 }
 
+// Svg-кнопка для заголовочной панели.
+const Tab = (props) => {
+    return <Text>1</Text>
+}
+// Клетка с временем в первом столбце.
+const Timestamp = (props) => { return <Text>20211231235959</Text> }
+// Клетки с данными таблицы.
+const Value = (props) => { return <Text>1</Text> }
 
-const HeaderButtons = () => {
+/**
+ * Наполнители для базовой клеточки
+ * https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime
+ */
+const fillers = {
+    tab: Tab,
+    timestamp: Timestamp,
+    value: Value
+}
+
+// Основной контейнер клетки.
+const Tile = (props) => {
+    const context = useContext(AppContext);
+    const Filler = fillers[props.filler]
+    return <View style={{
+        width: context.tileSize,
+        height: context.tileSize,
+        backgroundColor: 'green',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }}>
+        <TouchableOpacity>
+            <Filler data={props.data} />
+        </TouchableOpacity>
+    </View>
+}
+
+
+const Bar = () => {
     const context = useContext(AppContext);
     return Categories.map((item) => (
         <TouchableOpacity
@@ -46,19 +82,20 @@ const HeaderButtons = () => {
 }
 
 const Header = () => {
-
     return <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
         style={{ flexGrow: 0 }}>
-        <HeaderButtons />
+        <Bar />
     </ScrollView>
 }
 
 const TableRow = (props) => {
-    return [0, 1, 2, 3, 4, 5, 6].map((i) => (
-        <Tile text={props.values.name} first={i == 0 ? true : false} />
+    let values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+        <Tile first={false} filler="value" first={i == 0 ? true : false} />
     ))
+    values.unshift(<Tile first={true} filler="timestamp" />)
+    return values
 }
 
 const Table = () => {
