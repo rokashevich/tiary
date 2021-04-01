@@ -1,10 +1,10 @@
 export const Categories = [
-    { id: 11, name: 'Backetball', color: 'orange', tables: [101, 102, 103, 104, 105] },
-    { id: 12, name: 'Car', color: 'crimson', tables: [201, 202, 203, 204, 205, 206, 207, 208, 209, 210] },
-    { id: 13, name: 'Food', color: 'navy', tables: [301, 302, 303, 304, 305] },
-    { id: 14, name: 'School', color: 'blue', tables: [401, 402, 403, 404, 405] },
-    { id: 15, name: 'Hospital', color: 'red', tables: [501, 502, 503, 504, 505] },
-    { id: 0, name: 'Cog', color: 'black', tables: [601, 602, 603, 604, 605] },
+    { id: 11, icon: 'Backetball', foreground: 'orange', tables: [101, 102, 103, 104, 105] },
+    { id: 12, icon: 'Car', foreground: 'crimson', tables: [201, 202, 203, 204, 205, 206, 207, 208, 209, 210] },
+    { id: 13, icon: 'Food', foreground: 'navy', tables: [301, 302, 303, 304, 305] },
+    { id: 14, icon: 'School', foreground: 'blue', tables: [401, 402, 403, 404, 405] },
+    { id: 15, icon: 'Hospital', foreground: 'red', tables: [501, 502, 503, 504, 505] },
+    { id: 0, icon: 'Cog', foreground: 'black', tables: [601, 602, 603, 604, 605] },
 ]
 
 export const Tables = {
@@ -52,17 +52,3 @@ export const Tables = {
         ]
     }
 }
-
-export const DATA = [{
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
-},
-{
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-},
-{
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-},
-]

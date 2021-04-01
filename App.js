@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { TouchableOpacity, Text, View, ScrollView, Dimensions, FlatList } from 'react-native';
-import { Icons } from './Icons';
+import { Icon } from './Icons';
 import { Categories } from './Db';
 import AppContext from './AppContext';
 
@@ -29,15 +29,20 @@ const TileOld = (props) => {
             {text}
         </Text>
     </View>
-
 }
 
 // Svg-кнопка для заголовочной панели.
 const Tab = (props) => {
-    return <Text>1</Text>
+    const context = useContext(AppContext);
+    return <>
+        <Icon icon={props.data.icon} foreground={props.data.foreground} size={context.tileSize} />
+        <Text style={{ position: 'absolute', bottom: 1, right: 1, background: '#ffffff', color: '#000000' }}>x</Text>
+    </>
 }
 // Клетка с временем в первом столбце.
-const Timestamp = (props) => { return <Text>20211231235959</Text> }
+const Timestamp = (props) => {
+    return <Text style={{ fontSize: 10 }} > 2021.12.31</Text >
+}
 // Клетки с данными таблицы.
 const Value = (props) => { return <Text>1</Text> }
 
@@ -58,24 +63,39 @@ const Tile = (props) => {
     return <View style={{
         width: context.tileSize,
         height: context.tileSize,
-        backgroundColor: 'green',
+        backgroundColor: 'gray',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderLeftWidth: props.first ? 1 : 0,
+        borderRightWidth: 1,
+        borderBottomWidth: 1,
+        borderColor: 'white'
     }}>
-        <TouchableOpacity>
+        <TouchableOpacity
+            onPress={props.click}
+        >
             <Filler data={props.data} />
         </TouchableOpacity>
     </View>
 }
 
-
 const Bar = () => {
+    const context = useContext(AppContext);
+    const setId = (id) => {
+        context.setTabId(id)
+    }
+    return Categories.map((currentValue, index) => (
+        <Tile filler="tab" click={() => setId(index)} data={currentValue} first={index == 0 ? true : false} />
+    ))
+}
+
+const Bar2 = () => {
     const context = useContext(AppContext);
     return Categories.map((item) => (
         <TouchableOpacity
             onPress={() => { context.setTabId(item.id) }}
             style={{ background: item.id == context.tabId ? 'gray' : 'darkgray' }}>
-            <Icons name={item.name} color={item.color} size={context.tileSize} />
+            <Icon name={item.name} color={item.color} size={context.tileSize} />
             <Text style={{ position: 'absolute', bottom: 0, right: 0, background: item.color, color: 'white' }}>{item.id}</Text>
         </TouchableOpacity>
     ))
@@ -92,7 +112,7 @@ const Header = () => {
 
 const TableRow = (props) => {
     let values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
-        <Tile first={false} filler="value" first={i == 0 ? true : false} />
+        <Tile click={() => void 0} first={false} filler="value" first={i == 0 ? true : false} />
     ))
     values.unshift(<Tile first={true} filler="timestamp" />)
     return values
@@ -120,6 +140,7 @@ const DebugBar = () => {
 const App = () => {
     const [tileSize, setTabSize] = useState(50)
     const [tabId, setTabId] = useState(666)
+    const [selectedTables, setSelectedTables] = useState([])
     const [setting1value, setSetting1value] = useState('initialValue1');
     const [setting2value, setSetting2value] = useState(false);
     const toggleSetting2 = () => {
@@ -128,6 +149,7 @@ const App = () => {
     const userSettings = {
         tileSize: tileSize,
         tabId: tabId,
+        selectedTables: selectedTables,
         setting1name: setting1value,
         setting2name: setting2value,
         setTabId,
