@@ -1,7 +1,5 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { View } from 'react-native'
-import { Icon } from './Icons'
-import { Categories } from './Db'
 import AppContext from './AppContext'
 import Tabs from './components/Tabs'
 import Table from './components/Table'
@@ -50,23 +48,12 @@ import Table from './components/Table'
 // }
 
 const App = () => {
-  const [tileSize, setTabSize] = useState(50)
+  const [tileSize, setTabSize] = useState(75)
   const [categoryId, setCategoryId] = useState(666)
-  const [selectedTables, setSelectedTables] = useState([])
-  const [setting1value, setSetting1value] = useState('initialValue1')
-  const [setting2value, setSetting2value] = useState(false)
-  const toggleSetting2 = () => {
-    setting3 ? setSetting2(true) : setSetting2value(false)
-  }
   const userSettings = {
-    tileSize: tileSize,
+    tileSize,
     categoryId,
-    selectedTables: selectedTables,
-    setting1name: setting1value,
-    setting2name: setting2value,
-    setCategoryId,
-    setSetting1value,
-    toggleSetting2
+    setCategoryId
   }
   // const base_size = userSettings.tileSize
   // const screen_width = Dimensions.get('window').width
