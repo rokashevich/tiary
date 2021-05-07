@@ -3,7 +3,7 @@ import { View } from 'react-native'
 import AppContext from './AppContext'
 import Tabs from './components/Tabs'
 import Table from './components/Table'
-
+import s from './App.style.js'
 // const TableRow = props => {
 //   let values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => (
 //     <Tile
@@ -62,7 +62,7 @@ const App = () => {
   // const pixels_left = screen_width - tile_size * max_columns
   return (
     <AppContext.Provider value={userSettings}>
-      <View>
+      <View style={s.appView}>
         <Tabs />
         <Table />
         {/* <DebugBar /> */}
