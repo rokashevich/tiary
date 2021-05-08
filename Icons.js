@@ -85,6 +85,34 @@ const IconsDatabase = {
         />
       </Svg>
     )
+  },
+  PluxBox: props => {
+    return (
+      <Svg
+        width={props.size}
+        height={props.size}
+        viewBox='0 0 24 24'
+        {...props}>
+        <Path
+          fill={props.foreground}
+          d='M17,13H13V17H11V13H7V11H11V7H13V11H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z'
+        />
+      </Svg>
+    )
+  },
+  PluxBoxMultiple: props => {
+    return (
+      <Svg
+        width={props.size}
+        height={props.size}
+        viewBox='0 0 24 24'
+        {...props}>
+        <Path
+          fill={props.foreground}
+          d='M19,11H15V15H13V11H9V9H13V5H15V9H19M20,2H8A2,2 0 0,0 6,4V16A2,2 0 0,0 8,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M4,6H2V20A2,2 0 0,0 4,22H18V20H4V6Z'
+        />
+      </Svg>
+    )
   }
 }
 

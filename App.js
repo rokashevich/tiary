@@ -48,7 +48,7 @@ import s from './App.style.js'
 // }
 
 const App = () => {
-  const [tileSize, setTabSize] = useState(75)
+  const [tileSize, setTabSize] = useState(50)
   const [categoryId, setCategoryId] = useState(666)
   const userSettings = {
     tileSize,
@@ -65,7 +65,6 @@ const App = () => {
       <View style={s.appView}>
         <Tabs />
         <Table />
-        {/* <DebugBar /> */}
       </View>
     </AppContext.Provider>
   )

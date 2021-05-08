@@ -74,7 +74,11 @@ export const db = [
       { time: 202105070900, value: 50 },
       { time: 202105071100, value: 50 },
       { time: 202105071315, value: 50 },
-      { time: 202105071400, value: 50 }
+      { time: 202105071400, value: 50 },
+      { time: 202105072000, value: 222 },
+      { time: 202105080900, value: 50 },
+      { time: 202105081100, value: 50 },
+      { time: 202105081800, value: 80 }
     ]
   },
   {
