@@ -13,7 +13,7 @@ const Header = () => {
   const context = useContext(AppContext)
   const category = categories.find(x => x.id === context.categoryId)
   if (!category) return <></>
-  const columns = [11, 22, 33, 44, 55, 66]
+  const columns = [11, 22, 33, 44, 55, 66, 77]
 
   const tileDataCreator = (value, index) => ({
     key: index,

@@ -17,7 +17,7 @@ const Tabs = () => {
     return {
       key: category.id,
       onPress: () => {
-        context.setCategoryId(category.id)
+        context.setTab({ category: category.id, offset: 0 })
       },
       background: category.background,
       icon: category.icon,
@@ -27,7 +27,7 @@ const Tabs = () => {
   const cogsTileData = {
     key: 'cogs',
     onPress: () => {
-      console.log('cogs')
+      context.recalculateGeometry(context.geometry.tileSize + 1)
     },
     background: 'lightgray',
     icon: 'Cog',

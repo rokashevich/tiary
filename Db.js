@@ -6,12 +6,7 @@ export const categories = [
     icon: 'Backetball',
     iconColors: ['red'],
     foreground: 'orange',
-    columns: [
-      1,
-      2,
-      { text: 'Давление', columns: [3, 4, 5] },
-      { text: 'Заправка', columns: [6, 7] }
-    ]
+    columns: [1, 2, 3, 4, 5, 6, 7]
   },
   {
     id: 2,
@@ -78,7 +73,9 @@ export const db = [
       { time: 202105072000, value: 222 },
       { time: 202105080900, value: 50 },
       { time: 202105081100, value: 50 },
-      { time: 202105081800, value: 80 }
+      { time: 202105081800, value: 80 },
+      { time: 202105090900, value: 50 },
+      { time: 202105091538, value: 20 }
     ]
   },
   {
