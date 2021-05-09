@@ -10,32 +10,35 @@ const Debug = () => {
   return (
     <Text>
       tab={JSON.stringify(context.tab)}
-      {'\n'}geometry={JSON.stringify(context.geometry)}
+      {'\n'}tileSize={JSON.stringify(context.tileSize)}
+      {'\n'}columnsMaxCount={JSON.stringify(context.columnsMaxCount)}
     </Text>
   )
 }
 
 const App = () => {
-  const [geometry, setGeometry] = useState({})
+  const [tileSize, setTileSize] = useState(25)
+  const [columnsMaxCount, setColumnsMaxCount] = useState()
   const [tab, setTab] = useState({ category: 0, offset: 0 })
+
   const context = {
-    geometry,
-    recalculateGeometry: tileSize =>
-      setGeometry({
-        tileSize,
-        columnsMaxCount: Math.floor(Dimensions.get('window').width / tileSize)
-      }),
+    tileSize,
+    columnsMaxCount,
+    recalculateGeometry: o => {
+      // Типа полиморфизм: пользователь закидывает в функцию новый размер клетки,
+      // поворачивая экран в горизонтальный режим в функцию закидывается новая
+      // ширина. В обоих случаях происходит пересчёт максимального кол-ва колонок.
+      if (typeof o === 'number') setTileSize(o)
+      setColumnsMaxCount(Math.floor(Dimensions.get('window').width / tileSize))
+    },
     tab,
     setTab
   }
-  const onDimensionsChange = () => {
-    recalculateGeometry(geometry.tileSize)
-  }
   useEffect(() => {
-    context.recalculateGeometry(50)
-    Dimensions.addEventListener('change', onDimensionsChange)
+    context.recalculateGeometry()
+    Dimensions.addEventListener('change', context.recalculateGeometry)
     return () => {
-      Dimensions.removeEventListener('change', onDimensionsChange)
+      Dimensions.removeEventListener('change', context.recalculateGeometry)
     }
   }, [])
 

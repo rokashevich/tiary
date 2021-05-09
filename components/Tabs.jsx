@@ -27,7 +27,7 @@ const Tabs = () => {
   const cogsTileData = {
     key: 'cogs',
     onPress: () => {
-      context.recalculateGeometry(context.geometry.tileSize + 1)
+      context.recalculateGeometry(context.tileSize + 1)
     },
     background: 'lightgray',
     icon: 'Cog',
