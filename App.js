@@ -26,8 +26,7 @@ const App = () => {
       // поворачивая экран в горизонтальный режим в функцию закидывается новая
       // ширина. В обоих случаях происходит пересчёт максимального кол-ва колонок.
       setGeometry(geometry => {
-        let tileSize = geometry.tileSize
-        if (typeof o === 'number') tileSize = o
+        const tileSize = typeof o === 'number' ? o : geometry.tileSize
         const columnsMaxCount = Math.floor(
           Dimensions.get('window').width / tileSize
         )
