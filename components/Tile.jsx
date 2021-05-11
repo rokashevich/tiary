@@ -22,6 +22,18 @@ const Tile = props => {
       </Text>
     )
   }
+  const Number = props => (
+    <Text
+      style={{
+        position: 'absolute',
+        bottom: 1,
+        right: 1,
+        background: '#000',
+        color: '#fff'
+      }}>
+      {props.number}
+    </Text>
+  )
   return (
     <TouchableOpacity onPress={props.onPress}>
       <View
@@ -42,16 +54,13 @@ const Tile = props => {
             size={size}
           />
         )}
+        {props.number > 0 && <Number number={props.number} />}
         {props.texts &&
           props.texts.map((e, i) => (
             <Text
-              key={i}
+              key={`${i}`}
               style={{
                 position: 'absolute'
-                // bottom: 1,
-                // right: 1,
-                // background: '#ffffff',
-                // color: '#000000'
               }}>
               {e.text}
             </Text>

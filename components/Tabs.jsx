@@ -15,16 +15,17 @@ const Tabs = () => {
   const context = useContext(AppContext)
   const groupTileDataCreator = category => {
     return {
-      key: category.id,
+      key: category.id + '_' + category.number,
       onPress: () => {
         context.setTab({ category: category.id, offset: 0 })
       },
       background: category.background,
       icon: category.icon,
-      iconColors: category.iconColors
+      iconColors: category.iconColors,
+      number: category.number
     }
   }
-  const cogsTileData = {
+  const cogsTileData = () => ({
     key: 'cogs',
     onPress: () => {
       context.recalculateGeometry(context.geometry.tileSize + 1)
@@ -32,13 +33,12 @@ const Tabs = () => {
     background: 'lightgray',
     icon: 'Cog',
     iconColors: ['darkgray']
-  }
-
+  })
   return (
     <ScrollView horizontal style={s.scrollView}>
-      {categories
+      {context.geometry.tabs
         .map(category => <Tile {...groupTileDataCreator(category)} />)
-        .concat(<Tile {...cogsTileData} />)}
+        .concat(<Tile {...cogsTileData()} />)}
     </ScrollView>
   )
 }

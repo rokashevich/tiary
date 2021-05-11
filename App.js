@@ -4,6 +4,7 @@ import AppContext from './AppContext'
 import Tabs from './components/Tabs'
 import Table from './components/Table'
 import s from './App.style.js'
+import { categories } from './Db'
 
 const Debug = () => {
   const context = useContext(AppContext)
@@ -16,7 +17,11 @@ const Debug = () => {
 }
 
 const App = () => {
-  const [geometry, setGeometry] = useState(() => ({ tileSize: 50 }))
+  const [geometry, setGeometry] = useState(() => ({
+    tileSize: 100,
+    columnsMaxCount: 1,
+    tabs: []
+  }))
   const [tab, setTab] = useState({ category: 0, offset: 0 })
 
   const context = {
@@ -30,7 +35,23 @@ const App = () => {
         const columnsMaxCount = Math.floor(
           Dimensions.get('window').width / tileSize
         )
-        return { ...geometry, tileSize, columnsMaxCount }
+        let tabs = []
+        for (const i in categories) {
+          const category = categories[i]
+          for (
+            let i = 0, number = 1;
+            i < category.columns.length;
+            i += columnsMaxCount, number++
+          ) {
+            const columns = category.columns.slice(i, i + columnsMaxCount)
+            tabs.push({
+              ...category,
+              columns,
+              number: category.columns.length > columnsMaxCount ? number : 0
+            })
+          }
+        }
+        return { ...geometry, tileSize, columnsMaxCount, tabs }
       })
     },
     tab,
