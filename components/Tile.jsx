@@ -5,7 +5,7 @@ import { Icon } from '../Icons'
 
 const Tile = props => {
   const context = useContext(AppContext)
-  const size = context.tileSize
+  const size = context.geometry.tileSize
   const timeFiller = time => {
     const YYYY = time[0] + time[1] + time[2] + time[3]
     const MM = time[4] + time[5]
