@@ -17,7 +17,7 @@ const Tabs = () => {
     return {
       ...category,
       onPress: () => {
-        context.setTab({ category: category.id, offset: 0 })
+        context.setTab([category.id, category.number])
       }
     }
   }

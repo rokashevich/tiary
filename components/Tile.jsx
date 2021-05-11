@@ -55,16 +55,7 @@ const Tile = props => {
           />
         )}
         {props.number > 0 && <Number number={props.number} />}
-        {props.texts &&
-          props.texts.map((e, i) => (
-            <Text
-              key={`${i}`}
-              style={{
-                position: 'absolute'
-              }}>
-              {e.text}
-            </Text>
-          ))}
+        {props.header && <Text>{props.header}</Text>}
         {props.time && timeFiller(props.time)}
       </View>
     </TouchableOpacity>

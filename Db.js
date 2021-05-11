@@ -49,7 +49,7 @@ export const categories = [
 export const db = [
   {
     id: 1,
-    header: { text: 'Посещение стоматолога' },
+    header: 'Посещение стоматолога',
     data: [
       { time: 202001151300, value: true },
       { time: 202009151302, value: true }
@@ -57,7 +57,7 @@ export const db = [
   },
   {
     id: 2,
-    header: { text: 'Бёрпи' },
+    header: 'Бёрпи',
     data: [
       { time: 202009141259, value: 100 },
       { time: 202009151301, value: 110 },
@@ -80,7 +80,7 @@ export const db = [
   },
   {
     id: 3,
-    header: { text: 'сист' },
+    header: 'сист',
     data: [
       { time: 202009141259, value: 120 },
       { time: 202009151301, value: 110 },
@@ -89,7 +89,7 @@ export const db = [
   },
   {
     id: 4,
-    header: { text: 'дист' },
+    header: 'дист',
     data: [
       { time: 202009141259, value: 80 },
       { time: 202009151301, value: 70 },
@@ -98,7 +98,7 @@ export const db = [
   },
   {
     id: 5,
-    header: { text: 'пульс' },
+    header: 'пульс',
     data: [
       { time: 202009141259, value: 60 },
       { time: 202009151301, value: 91 },
@@ -108,7 +108,7 @@ export const db = [
   },
   {
     id: 6,
-    header: { text: 'рублей' },
+    header: 'рублей',
     data: [
       { time: 202009141259, value: 1000 },
       { time: 202009151301, value: 1500 },
@@ -117,7 +117,7 @@ export const db = [
   },
   {
     id: 7,
-    header: { text: 'литров' },
+    header: 'литров',
     data: [
       { time: 202009141259, value: 25 },
       { time: 202009151301, value: 35 },

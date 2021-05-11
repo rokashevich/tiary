@@ -41,8 +41,10 @@ const Table = () => {
     setData(testtest)
   }, [])
   const context = useContext(AppContext)
-  const category = categories.find(x => x.id === context.categoryId)
-  if (!category) return <></>
+  const tab = context.geometry.tabs.find(
+    x => x.id === context.tab[0] && x.number === context.tab[1]
+  )
+  if (!tab) return <></>
 
   const renderItem = ({ item }) => {
     if (item.key === 'footer') {
@@ -71,13 +73,14 @@ const Table = () => {
       </View>
     )
   }
+
   return (
     <View>
-      <Header />
-      <FlatList
+      <Header {...{ columns: tab.columns }} />
+      {/* <FlatList
         style={{ flex: 1 }}
         data={data}
-        renderItem={renderItem}></FlatList>
+        renderItem={renderItem}></FlatList> */}
     </View>
   )
 }

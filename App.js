@@ -12,6 +12,7 @@ const Debug = () => {
     <Text>
       geometry={JSON.stringify(context.geometry)}
       {'\n'}
+      tab={JSON.stringify(context.tab)}
     </Text>
   )
 }
@@ -22,7 +23,7 @@ const App = () => {
     columnsMaxCount: 1,
     tabs: []
   }))
-  const [tab, setTab] = useState({ category: 0, offset: 0 })
+  const [tab, setTab] = useState([0, 0])
 
   const context = {
     geometry,
@@ -35,20 +36,22 @@ const App = () => {
         const columnsMaxCount = Math.floor(
           Dimensions.get('window').width / tileSize
         )
+        const valueColumnsMaxCount = columnsMaxCount - 1
         let tabs = []
         for (const i in categories) {
           const category = categories[i]
           for (
             let j = 0, number = 1;
             j < category.columns.length;
-            j += columnsMaxCount, number++
+            j += valueColumnsMaxCount, number++
           ) {
-            const columns = category.columns.slice(j, j + columnsMaxCount)
+            const columns = category.columns.slice(j, j + valueColumnsMaxCount)
             tabs.push({
               ...category,
               key: i + '' + j,
               columns,
-              number: category.columns.length > columnsMaxCount ? number : 0
+              number:
+                category.columns.length > valueColumnsMaxCount ? number : 0
             })
           }
         }
