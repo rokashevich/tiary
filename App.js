@@ -39,13 +39,14 @@ const App = () => {
         for (const i in categories) {
           const category = categories[i]
           for (
-            let i = 0, number = 1;
-            i < category.columns.length;
-            i += columnsMaxCount, number++
+            let j = 0, number = 1;
+            j < category.columns.length;
+            j += columnsMaxCount, number++
           ) {
-            const columns = category.columns.slice(i, i + columnsMaxCount)
+            const columns = category.columns.slice(j, j + columnsMaxCount)
             tabs.push({
               ...category,
+              key: i + '' + j,
               columns,
               number: category.columns.length > columnsMaxCount ? number : 0
             })

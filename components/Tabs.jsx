@@ -15,14 +15,10 @@ const Tabs = () => {
   const context = useContext(AppContext)
   const groupTileDataCreator = category => {
     return {
-      key: category.id + '_' + category.number,
+      ...category,
       onPress: () => {
         context.setTab({ category: category.id, offset: 0 })
-      },
-      background: category.background,
-      icon: category.icon,
-      iconColors: category.iconColors,
-      number: category.number
+      }
     }
   }
   const cogsTileData = () => ({
