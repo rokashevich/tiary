@@ -56,6 +56,7 @@ const Tile = props => {
         )}
         {props.number > 0 && <Number number={props.number} />}
         {props.header && <Text>{props.header}</Text>}
+        {props.value && <Text>{props.value}</Text>}
         {props.time && timeFiller(props.time)}
       </View>
     </TouchableOpacity>

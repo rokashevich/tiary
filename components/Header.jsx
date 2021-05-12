@@ -5,12 +5,14 @@ import AppContext from '../AppContext'
 import Tile from './Tile'
 import s from './Table.style.js'
 
-import { db } from '../Db'
+import { categories, externalDb } from '../Db'
 
 /* Основная рабочая панель - таблица. **/
 
 const Header = props => {
   const columns = props.columns
+  const context = useContext(AppContext)
+  const category = categories.find(x => x.id === context.tab[0])
   return (
     <View style={{ flexDirection: 'row' }}>
       <Tile key='empty' />
@@ -19,8 +21,8 @@ const Header = props => {
           {...{
             key: i,
             onPress: () => console.log(e, i),
-            background: 'red',
-            header: db.find(x => x.id == e).header
+            background: category.background,
+            header: externalDb[e].header
           }}
         />
       ))}

@@ -4,7 +4,7 @@ import AppContext from './AppContext'
 import Tabs from './components/Tabs'
 import Table from './components/Table'
 import s from './App.style.js'
-import { categories } from './Db'
+import { categories, externalDb } from './Db'
 
 const Debug = () => {
   const context = useContext(AppContext)
@@ -13,6 +13,8 @@ const Debug = () => {
       geometry={JSON.stringify(context.geometry)}
       {'\n'}
       tab={JSON.stringify(context.tab)}
+      {'\n'}
+      db={JSON.stringify(context.db)}
     </Text>
   )
 }
@@ -24,6 +26,21 @@ const App = () => {
     tabs: []
   }))
   const [tab, setTab] = useState([0, 0])
+  const [db] = useState(() =>
+    categories.reduce(
+      (accumulator, currentValue) => (
+        (accumulator[currentValue.id] = [
+          ...new Set(
+            currentValue.columns
+              .map(element => Object.keys(externalDb[element].data))
+              .flat()
+          )
+        ].sort()),
+        accumulator
+      ),
+      {}
+    )
+  )
 
   const context = {
     geometry,
@@ -59,7 +76,8 @@ const App = () => {
       })
     },
     tab,
-    setTab
+    setTab,
+    db
   }
   useEffect(() => {
     context.recalculateGeometry()
@@ -78,8 +96,8 @@ const App = () => {
     <AppContext.Provider value={context}>
       <Debug />
       <View style={s.appView}>
-        <Tabs />
         <Table />
+        <Tabs />
       </View>
     </AppContext.Provider>
   )
