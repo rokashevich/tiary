@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ScrollView } from 'react-native'
+import { View, ScrollView } from 'react-native'
 
 import AppContext from '../AppContext'
 import { categories } from '../Db'
@@ -31,11 +31,13 @@ const Tabs = () => {
     iconColors: ['darkgray']
   })
   return (
-    <ScrollView horizontal style={s.scrollView}>
-      {context.geometry.tabs
-        .map(category => <Tile {...groupTileDataCreator(category)} />)
-        .concat(<Tile {...cogsTileData()} />)}
-    </ScrollView>
+    <View>
+      <ScrollView horizontal style={s.scrollView}>
+        {context.geometry.tabs
+          .map(category => <Tile {...groupTileDataCreator(category)} />)
+          .concat(<Tile {...cogsTileData()} />)}
+      </ScrollView>
+    </View>
   )
 }
 

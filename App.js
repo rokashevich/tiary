@@ -21,7 +21,7 @@ const Debug = () => {
 
 const App = () => {
   const [geometry, setGeometry] = useState(() => ({
-    tileSize: 100,
+    tileSize: 50,
     columnsMaxCount: 1,
     tabs: []
   }))
@@ -94,8 +94,12 @@ const App = () => {
   // const pixels_left = screen_width - tile_size * max_columns
   return (
     <AppContext.Provider value={context}>
-      <Debug />
-      <View style={s.appView}>
+      {/* <Debug /> */}
+      <View
+        style={{
+          height: '100%',
+          justifyContent: 'flex-end'
+        }}>
         <Table />
         <Tabs />
       </View>

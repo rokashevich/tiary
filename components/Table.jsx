@@ -16,7 +16,6 @@ const Table = () => {
   const tab = context.geometry.tabs.find(
     x => x.id === context.tab[0] && x.number === context.tab[1]
   )
-  if (!tab) return <></>
 
   const renderItem = ({ item }) => {
     const valuesTileDataCreator = (value, index) => ({
@@ -48,13 +47,17 @@ const Table = () => {
   }
 
   return (
-    <View>
-      <FlatList
-        style={{ flex: 1 }}
-        data={context.db[context.tab[0]]}
-        renderItem={renderItem}></FlatList>
-      <Header {...{ columns: tab.columns }} />
-    </View>
+    <>
+      {tab && (
+        <View style={{ flexGrow: 1, justifyContent: 'flex-end' }}>
+          <FlatList
+            style={{ flex: 1 }}
+            data={context.db[context.tab[0]]}
+            renderItem={renderItem}></FlatList>
+          <Header {...{ columns: tab.columns }} />
+        </View>
+      )}
+    </>
   )
 }
 
