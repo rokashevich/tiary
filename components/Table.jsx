@@ -32,7 +32,7 @@ const Table = () => {
             key: 'time',
             onPress: () => console.log('time'),
             background: category.background,
-            time: 'item.key'
+            time: item
           }}
         />
         {columns

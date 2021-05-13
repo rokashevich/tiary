@@ -13,7 +13,10 @@ const Tile = props => {
     const hh = time[8] + time[9]
     const mm = time[10] + time[11]
     return (
-      <Text style={{ color: 'white' }}>
+      <Text
+        style={{ color: 'white' }}
+        adjustsFontSizeToFit={true}
+        minimumFontScale={0.01}>
         {YYYY}
         {'\n'}
         {MM}.{DD}
@@ -55,7 +58,11 @@ const Tile = props => {
           />
         )}
         {props.number > 0 && <Number number={props.number} />}
-        {props.header && <Text>{props.header}</Text>}
+        {props.header && (
+          <Text adjustsFontSizeToFit={true} minimumFontScale={0.01}>
+            {props.header}
+          </Text>
+        )}
         {props.value && <Text>{props.value}</Text>}
         {props.time && timeFiller(props.time)}
       </View>

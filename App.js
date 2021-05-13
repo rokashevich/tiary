@@ -95,11 +95,7 @@ const App = () => {
   return (
     <AppContext.Provider value={context}>
       {/* <Debug /> */}
-      <View
-        style={{
-          height: '100%',
-          justifyContent: 'flex-end'
-        }}>
+      <View style={s.appView}>
         <Table />
         <Tabs />
       </View>

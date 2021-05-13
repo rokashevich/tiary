@@ -6,7 +6,7 @@ export const categories = [
     icon: 'Backetball',
     iconColors: ['red'],
     foreground: 'orange',
-    columns: [1, 2, 3, 4, 5, 6, 7]
+    columns: [1]
   },
   {
     id: 2,
