@@ -51,6 +51,7 @@ const Table = () => {
       {tab && (
         <View style={{ flexGrow: 1, justifyContent: 'flex-end' }}>
           <FlatList
+            inverted
             style={{ flex: 1 }}
             data={context.db[context.tab[0]]}
             renderItem={renderItem}></FlatList>
