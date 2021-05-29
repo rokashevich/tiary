@@ -1,8 +1,8 @@
-import React, { useEffect, useContext, useState } from 'react'
-import { Dimensions, View, Text } from 'react-native'
+import React, { useEffect, useContext, useState, useRef } from 'react'
+import { Animated, Dimensions, View, ScrollView, Text } from 'react-native'
 import AppContext from './AppContext'
-import Tabs from './components/Tabs'
-import Table from './components/Table'
+import Workspace from './components/workspace/Workspace'
+import Settings from './components/settings/Settings'
 import s from './App.style.js'
 import { categories, externalDb } from './Db'
 
@@ -20,6 +20,7 @@ const Debug = () => {
 }
 
 const App = () => {
+  const [workspace, setWorkspace] = useState(true)
   const [geometry, setGeometry] = useState(() => ({
     tileSize: 50,
     columnsMaxCount: 1,
@@ -77,7 +78,9 @@ const App = () => {
     },
     tab,
     setTab,
-    db
+    db,
+    workspace,
+    setWorkspace
   }
   useEffect(() => {
     context.recalculateGeometry()
@@ -92,12 +95,11 @@ const App = () => {
   // const max_columns = Math.floor(screen_width / base_size)
   // const tile_size = Math.floor(screen_width / max_columns)
   // const pixels_left = screen_width - tile_size * max_columns
+  const scrollX = useRef(new Animated.Value(0)).current
   return (
     <AppContext.Provider value={context}>
-      {/* <Debug /> */}
       <View style={s.appView}>
-        <Table />
-        <Tabs />
+        {context.workspace ? <Workspace /> : <Settings />}
       </View>
     </AppContext.Provider>
   )

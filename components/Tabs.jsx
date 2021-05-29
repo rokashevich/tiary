@@ -24,11 +24,12 @@ const Tabs = () => {
   const cogsTileData = () => ({
     key: 'cogs',
     onPress: () => {
-      context.recalculateGeometry(context.geometry.tileSize + 1)
+      context.setWorkspace(false)
+      //context.recalculateGeometry(context.geometry.tileSize + 1)
     },
     background: 'lightgray',
     icon: 'Cog',
-    iconColors: ['darkgray']
+    foreground: 'black'
   })
   return (
     <View>

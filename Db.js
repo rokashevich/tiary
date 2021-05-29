@@ -4,8 +4,7 @@ export const categories = [
     description: '',
     background: 'purple',
     icon: 'Backetball',
-    iconColors: ['red'],
-    foreground: 'orange',
+    foreground: 'red',
     columns: [1]
   },
   {
@@ -13,8 +12,7 @@ export const categories = [
     description: 'Автомобильные траты',
     background: 'blue',
     icon: 'Car',
-    iconColors: ['orange'],
-    foreground: 'crimson',
+    foreground: 'orange',
     columns: [1, 2, 3, 4, 5, 6, 7]
   },
   {
@@ -22,8 +20,7 @@ export const categories = [
     description: 'Учёт съеденного',
     background: 'green',
     icon: 'Food',
-    iconColors: ['yellow'],
-    foreground: 'navy',
+    foreground: 'yellow',
     columns: [7, 6, 5, 4, 3, 2, 1]
   },
   {
@@ -31,8 +28,7 @@ export const categories = [
     description: 'Учёт самообразования: прочитанного/прослушанного',
     background: 'yellow',
     icon: 'School',
-    iconColors: ['green'],
-    foreground: 'blue',
+    foreground: 'green',
     columns: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   },
   {
@@ -40,15 +36,14 @@ export const categories = [
     description: 'Учёт медицинских показателей',
     background: 'orange',
     icon: 'Hospital',
-    iconColors: ['blue'],
-    foreground: 'red',
+    foreground: 'blue',
     columns: []
   }
 ]
 
 export const externalDb = {
   1: {
-    header: 'Посещение стоматолога',
+    header: 'ПОСЕЩЕНИЕ СТОМАТОЛОГА',
     data: {
       202001151300: true,
       202009151302: true

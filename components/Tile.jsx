@@ -6,7 +6,8 @@ import { Icon } from '../Icons'
 const Tile = props => {
   const context = useContext(AppContext)
   const size = context.geometry.tileSize
-  const timeFiller = time => {
+  const Time = props => {
+    const time = props.time
     const YYYY = time[0] + time[1] + time[2] + time[3]
     const MM = time[4] + time[5]
     const DD = time[6] + time[7]
@@ -14,7 +15,7 @@ const Tile = props => {
     const mm = time[10] + time[11]
     return (
       <Text
-        style={{ color: 'white' }}
+        style={{ color: props.foreground, textAlign: 'center' }}
         adjustsFontSizeToFit={true}
         minimumFontScale={0.01}>
         {YYYY}
@@ -31,7 +32,7 @@ const Tile = props => {
         position: 'absolute',
         bottom: 1,
         right: 1,
-        background: '#000',
+        backgroundColor: '#000',
         color: '#fff'
       }}>
       {props.number}
@@ -51,20 +52,22 @@ const Tile = props => {
           borderColor: 'white'
         }}>
         {props.icon && (
-          <Icon
-            icon={props.icon}
-            foreground={props.iconColors[0]}
-            size={size}
-          />
+          <Icon icon={props.icon} foreground={props.foreground} size={size} />
         )}
         {props.number > 0 && <Number number={props.number} />}
         {props.header && (
-          <Text adjustsFontSizeToFit={true} minimumFontScale={0.01}>
+          <Text
+            adjustsFontSizeToFit={true}
+            style={{
+              color: props.foreground,
+              textAlign: 'center'
+            }}>
+            {' '}
             {props.header}
           </Text>
         )}
         {props.value && <Text>{props.value}</Text>}
-        {props.time && timeFiller(props.time)}
+        {props.time && <Time {...props} />}
       </View>
     </TouchableOpacity>
   )

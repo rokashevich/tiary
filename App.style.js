@@ -3,7 +3,7 @@ import Constants from 'expo-constants'
 export default StyleSheet.create({
   appView: {
     marginTop: Constants.statusBarHeight,
-    // height: '100%',
+    marginLeft: 5,
     flexGrow: 1,
     justifyContent: 'flex-end'
   }

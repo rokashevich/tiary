@@ -21,17 +21,18 @@ const Table = () => {
     const valuesTileDataCreator = (value, index) => ({
       key: index,
       onPress: () => console.log(index, value),
-      background: 'cyan',
+      // background: 'cyan',
       texts: [{ text: value }]
     })
     const columns = category.columns
     return (
-      <View style={{ flexDirection: 'row' }}>
+      <View key={item} style={{ flexDirection: 'row' }}>
         <Tile
           {...{
             key: 'time',
             onPress: () => console.log('time'),
             background: category.background,
+            foreground: category.foreground,
             time: item
           }}
         />
@@ -40,7 +41,7 @@ const Table = () => {
             item in externalDb[e].data ? externalDb[e].data[item] : ''
           )
           .map((e, i) => (
-            <Tile {...{ key: i, value: '[' + e + ']' }} />
+            <Tile {...{ key: item + i, value: '[' + e + ']' }} />
           ))}
       </View>
     )
