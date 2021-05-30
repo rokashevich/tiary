@@ -20,7 +20,7 @@ const Debug = () => {
 }
 
 const App = () => {
-  const [workspace, setWorkspace] = useState(true)
+  const [settings, setSettings] = useState(true)
   const [geometry, setGeometry] = useState(() => ({
     tileSize: 50,
     columnsMaxCount: 1,
@@ -79,8 +79,8 @@ const App = () => {
     tab,
     setTab,
     db,
-    workspace,
-    setWorkspace
+    settings,
+    setSettings
   }
   useEffect(() => {
     context.recalculateGeometry()
@@ -99,8 +99,9 @@ const App = () => {
   return (
     <AppContext.Provider value={context}>
       <View style={s.appView}>
-        {context.workspace ? <Workspace /> : <Settings />}
+        <Workspace />
       </View>
+      {context.settings && <Settings />}
     </AppContext.Provider>
   )
 }

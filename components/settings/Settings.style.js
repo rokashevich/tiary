@@ -1,9 +1,15 @@
 import { StyleSheet, Dimensions } from 'react-native'
+import Constants from 'expo-constants'
 export default StyleSheet.create({
   settings: {
-    // marginTop: Constants.statusBarHeight,
-    flexGrow: 1
+    position: 'absolute',
+    height: Dimensions.get('screen').height - Constants.statusBarHeight,
+    width: Dimensions.get('screen').width,
+    marginTop: Constants.statusBarHeight,
+    // flexGrow: 1
     // justifyContent: 'flex-end',
-    // backgroundColor: 'black'
+    backgroundColor: 'gray',
+    borderWidth: 2,
+    borderColor: 'red'
   }
 })
