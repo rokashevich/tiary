@@ -8,8 +8,10 @@ export default StyleSheet.create({
     marginTop: Constants.statusBarHeight,
     // flexGrow: 1
     // justifyContent: 'flex-end',
-    backgroundColor: 'gray',
-    borderWidth: 2,
-    borderColor: 'red'
+    backgroundColor: 'white',
+    borderTopWidth: 1,
+    // borderRightWidth: 12,
+    // borderBottomWidth: 12,
+    borderColor: 'black'
   }
 })

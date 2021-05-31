@@ -12,7 +12,7 @@ const Settings = () => {
     console.log(1)
     Animated.timing(padding, {
       toValue: 0,
-      duration: 1000,
+      duration: 333,
       useNativeDriver: false
     }).start()
   })
@@ -22,22 +22,41 @@ const Settings = () => {
         ...s.settings,
         marginLeft: padding
       }}>
-      <Tile
-        {...{
-          onPress: () => {
-            Animated.timing(padding, {
-              toValue: -Dimensions.get('screen').width,
-              duration: 1000,
-              useNativeDriver: false
-            }).start(() => {
-              context.setSettings(false)
-            })
-          },
-          background: 'lightgray',
-          icon: 'Cog',
-          foreground: 'black'
-        }}
-      />
+      <View style={{ flexDirection: 'row' }}>
+        <Tile
+          {...{
+            onPress: () => {
+              Animated.timing(padding, {
+                toValue: -Dimensions.get('screen').width,
+                duration: 333,
+                useNativeDriver: false
+              }).start(() => {
+                context.setSettings(false)
+              })
+            },
+            background: 'white',
+            icon: 'ArrowLeft',
+            foreground: 'black'
+          }}
+        />
+        <View
+          style={{
+            backgroundColor: 'red',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 300,
+            height: 50
+          }}>
+          <Text
+            adjustsFontSizeToFit={true}
+            style={{
+              textAlign: 'center',
+              fontSize: 50
+            }}>
+            Settings
+          </Text>
+        </View>
+      </View>
     </Animated.View>
   )
 }

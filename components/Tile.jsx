@@ -16,8 +16,7 @@ const Tile = props => {
     return (
       <Text
         style={{ color: props.foreground, textAlign: 'center' }}
-        adjustsFontSizeToFit={true}
-        minimumFontScale={0.01}>
+        adjustsFontSizeToFit={true}>
         {YYYY}
         {'\n'}
         {MM}.{DD}
@@ -62,7 +61,6 @@ const Tile = props => {
               color: props.foreground,
               textAlign: 'center'
             }}>
-            {' '}
             {props.header}
           </Text>
         )}
