@@ -5,6 +5,7 @@ import s from './Settings.style.js'
 import AppContext from '../../AppContext'
 const Settings = () => {
   const context = useContext(AppContext)
+  const size = context.geometry.tileSize
   const padding = useRef(
     new Animated.Value(-Dimensions.get('screen').width)
   ).current
@@ -41,17 +42,14 @@ const Settings = () => {
         />
         <View
           style={{
-            backgroundColor: 'red',
-            justifyContent: 'center',
             alignItems: 'center',
             width: 300,
-            height: 50
+            height: size
           }}>
           <Text
             adjustsFontSizeToFit={true}
             style={{
-              textAlign: 'center',
-              fontSize: 50
+              fontSize: size
             }}>
             Settings
           </Text>
