@@ -1,7 +1,7 @@
 export const categories = [
   {
     id: 1,
-    description: '',
+    description: 'Sport',
     background: 'purple',
     icon: 'Backetball',
     foreground: 'red',
