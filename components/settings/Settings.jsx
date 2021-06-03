@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import Tile from '../Tile'
+import Tile from '../tile/Tile'
 import {
   Animated,
   View,
@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 import s from './Settings.style.js'
 import AppContext from '../../AppContext'
-import { categories, externalDb } from './../../Db'
+import { categories, externalDb } from '../../Db'
 const Settings = () => {
   const context = useContext(AppContext)
   const size = context.geometry.tileSize
@@ -40,7 +40,7 @@ const Settings = () => {
   const panResponder = useRef(
     PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
-      onPanResponderMove: Animated.event([null, { dx: pan.x, dy: pan.y }]),
+      onPanResponderMove: Animated.event([null, { dx: pan.x, dy: pan.y }], { useNativeDriver: true }),
       onPanResponderRelease: () => {
         Animated.spring(pan, { toValue: { x: 0, y: 0 } }).start()
       }
@@ -86,8 +86,8 @@ const Settings = () => {
       </View>
       <ScrollView style={{ flex: 1 }}>
         {localCategories
-          .map(category => (
-            <View>
+          .map((category, i) => (
+            <View key={i}>
               <Animated.View
                 {...{ id: category.id }}
                 style={{
@@ -103,8 +103,9 @@ const Settings = () => {
                 </Text>
               </Animated.View>
               {category.columns
-                .map(column => (
+                .map((column, i) => (
                   <View
+                    key={i}
                     style={{
                       borderWidth: 1,
                       borderColor: 'black',
@@ -115,14 +116,14 @@ const Settings = () => {
                   </View>
                 ))
                 .concat(
-                  <View>
+                  <View key="add">
                     <Text>Добавить таблицу</Text>
                   </View>
                 )}
             </View>
           ))
           .concat(
-            <View>
+            <View key="add">
               <Text>Добавить категорию</Text>
             </View>
           )}

@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { Text, FlatList, View } from 'react-native'
 
-import AppContext from '../AppContext'
-import Tile from './Tile'
+import AppContext from '../../AppContext'
+import Tile from '../tile/Tile'
 import Header from './Header'
 import s from './Table.style.js'
 
-import { categories, externalDb } from '../Db'
+import { categories, externalDb } from '../../Db'
 
 /* Основная рабочая панель - таблица. **/
 

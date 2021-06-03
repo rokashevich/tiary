@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import { View, ScrollView } from 'react-native'
 
-import AppContext from '../AppContext'
-import { categories } from '../Db'
-import Tile from './Tile'
+import AppContext from '../../AppContext'
+import { categories } from '../../Db'
+import Tile from '../tile/Tile'
 import s from './Tabs.style.js'
 
 /* Возвращаем массив кнопок верхней панели.

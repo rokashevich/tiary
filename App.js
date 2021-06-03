@@ -6,6 +6,7 @@ import Settings from './components/settings/Settings'
 import s from './App.style.js'
 import { categories, externalDb } from './Db'
 
+
 const Debug = () => {
   const context = useContext(AppContext)
   return (

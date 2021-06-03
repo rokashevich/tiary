@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { TouchableOpacity, View, Text } from 'react-native'
-import AppContext from '../AppContext'
-import { Icon } from '../Icons'
+import AppContext from '../../AppContext'
+import { Icon } from '../../Icons'
 
 const Tile = props => {
   const context = useContext(AppContext)
