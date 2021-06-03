@@ -1,23 +1,51 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import Tile from '../Tile'
-import { Animated, View, ScrollView, Text, Dimensions } from 'react-native'
+import {
+  Animated,
+  View,
+  ScrollView,
+  Text,
+  Dimensions,
+  PanResponder
+} from 'react-native'
 import s from './Settings.style.js'
 import AppContext from '../../AppContext'
 import { categories, externalDb } from './../../Db'
 const Settings = () => {
   const context = useContext(AppContext)
   const size = context.geometry.tileSize
+
+  const [localCategories, setLocalCategories] = useState(
+    categories.map(e => ({ ...e, columns: e.columns.map(e => e) }))
+  )
+  const [localDb, setLocalDb] = useState(
+    Object.entries(externalDb).reduce((acc, cur) => {
+      acc[cur[0]] = cur[1]['header']
+      return acc
+    }, {})
+  )
+
   const padding = useRef(
     new Animated.Value(-Dimensions.get('screen').width)
   ).current
   useEffect(() => {
-    console.log(1)
+    console.log(localDb)
     Animated.timing(padding, {
       toValue: 0,
       duration: 333,
       useNativeDriver: false
     }).start()
   })
+  const pan = useRef(new Animated.ValueXY()).current
+  const panResponder = useRef(
+    PanResponder.create({
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderMove: Animated.event([null, { dx: pan.x, dy: pan.y }]),
+      onPanResponderRelease: () => {
+        Animated.spring(pan, { toValue: { x: 0, y: 0 } }).start()
+      }
+    })
+  ).current
   return (
     <Animated.View
       style={{
@@ -57,21 +85,23 @@ const Settings = () => {
         </View>
       </View>
       <ScrollView style={{ flex: 1 }}>
-        {categories
+        {localCategories
           .map(category => (
             <View>
-              <View
+              <Animated.View
                 {...{ id: category.id }}
                 style={{
                   borderWidth: 1,
                   borderColor: 'black',
                   margin: 1,
-                  backgroundColor: category.background
-                }}>
+                  backgroundColor: category.background,
+                  transform: [{ translateX: pan.x }, { translateY: pan.y }]
+                }}
+                {...panResponder.panHandlers}>
                 <Text style={{ color: category.foreground }}>
                   {category.description}
                 </Text>
-              </View>
+              </Animated.View>
               {category.columns
                 .map(column => (
                   <View
