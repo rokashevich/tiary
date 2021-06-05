@@ -41,10 +41,13 @@ const Settings = () => {
     PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
       onPanResponderMove: Animated.event([null, { dx: pan.x, dy: pan.y }], {
-        useNativeDriver: true
+        useNativeDriver: false
       }),
       onPanResponderRelease: () => {
-        Animated.spring(pan, { toValue: { x: 0, y: 0 } }).start()
+        Animated.spring(pan, {
+          toValue: { x: 0, y: 0 },
+          useNativeDriver: false
+        }).start()
       }
     })
   ).current
@@ -52,7 +55,7 @@ const Settings = () => {
     <Animated.View
       style={{
         ...s.settings,
-        marginLeft: padding
+        x: padding
       }}>
       <View style={{ flexDirection: 'row' }}>
         <Tile
@@ -100,10 +103,10 @@ const Settings = () => {
                   transform: [{ translateX: pan.x }, { translateY: pan.y }]
                 }}
                 {...panResponder.panHandlers}>
-                <Tile text='xxx'></Tile>
-                {/* <Text style={{ color: category.foreground }}>
+                {/* <Tile text='xxx'></Tile> */}
+                <Text style={{ color: category.foreground }}>
                   {category.description}
-                </Text> */}
+                </Text>
               </Animated.View>
               {category.columns
                 .map((column, i) => (
