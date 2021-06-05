@@ -40,7 +40,9 @@ const Settings = () => {
   const panResponder = useRef(
     PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
-      onPanResponderMove: Animated.event([null, { dx: pan.x, dy: pan.y }], { useNativeDriver: true }),
+      onPanResponderMove: Animated.event([null, { dx: pan.x, dy: pan.y }], {
+        useNativeDriver: true
+      }),
       onPanResponderRelease: () => {
         Animated.spring(pan, { toValue: { x: 0, y: 0 } }).start()
       }
@@ -98,9 +100,10 @@ const Settings = () => {
                   transform: [{ translateX: pan.x }, { translateY: pan.y }]
                 }}
                 {...panResponder.panHandlers}>
-                <Text style={{ color: category.foreground }}>
+                <Tile text='xxx'></Tile>
+                {/* <Text style={{ color: category.foreground }}>
                   {category.description}
-                </Text>
+                </Text> */}
               </Animated.View>
               {category.columns
                 .map((column, i) => (
@@ -116,14 +119,14 @@ const Settings = () => {
                   </View>
                 ))
                 .concat(
-                  <View key="add">
+                  <View key='add'>
                     <Text>Добавить таблицу</Text>
                   </View>
                 )}
             </View>
           ))
           .concat(
-            <View key="add">
+            <View key='add'>
               <Text>Добавить категорию</Text>
             </View>
           )}

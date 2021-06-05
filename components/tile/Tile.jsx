@@ -6,6 +6,12 @@ import { Icon } from '../../Icons'
 const Tile = props => {
   const context = useContext(AppContext)
   const size = context.geometry.tileSize
+
+  const onPress = props.onPress ? props.onPress : null
+  const background = props.background ? props.background : '#f0f'
+  const foreground = props.foreground ? props.foreground : '#0ff'
+  const icon = props.icon ? props.icon : null
+
   const Time = props => {
     const time = props.time
     const YYYY = time[0] + time[1] + time[2] + time[3]
@@ -37,37 +43,77 @@ const Tile = props => {
       {props.number}
     </Text>
   )
+
+  // https://gist.github.com/kitze/23d82bb9eb0baabfd03a6a720b1d637f
+  const ConditionalWrap = ({ condition, wrap, children }) =>
+    condition ? wrap(children) : <>{children}</>
+
+  const TileFrame = () => (
+    <View
+      style={{
+        width: 50,
+        height: 50,
+        backgroundColor: background,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 2,
+        borderColor: 'blue'
+      }}>
+      {icon && <Icon icon={icon} foreground={foreground} size={size} />}
+      {props.number > 0 && <Number number={props.number} />}
+      {props.header && (
+        <Text
+          adjustsFontSizeToFit={true}
+          style={{
+            color: props.foreground,
+            textAlign: 'center'
+          }}>
+          {props.header}
+        </Text>
+      )}
+      {props.value && <Text>{props.value}</Text>}
+      {props.time && <Time {...props} />}
+    </View>
+  )
+
   return (
-    <TouchableOpacity onPress={props.onPress}>
-      <View
-        style={{
-          width: size,
-          height: size,
-          backgroundColor: props.background,
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderRightWidth: 1,
-          borderBottomWidth: 1,
-          borderColor: 'white'
-        }}>
-        {props.icon && (
-          <Icon icon={props.icon} foreground={props.foreground} size={size} />
-        )}
-        {props.number > 0 && <Number number={props.number} />}
-        {props.header && (
-          <Text
-            adjustsFontSizeToFit={true}
-            style={{
-              color: props.foreground,
-              textAlign: 'center'
-            }}>
-            {props.header}
-          </Text>
-        )}
-        {props.value && <Text>{props.value}</Text>}
-        {props.time && <Time {...props} />}
-      </View>
-    </TouchableOpacity>
+    <ConditionalWrap
+      condition={onPress}
+      wrap={children => (
+        <TouchableOpacity onPress={onPress}>{children}</TouchableOpacity>
+      )}>
+      <TileFrame />
+    </ConditionalWrap>
+    // <TouchableOpacity onPress={props.onPress}>
+    //   <View
+    //     style={{
+    //       width: size,
+    //       height: size,
+    //       backgroundColor: background,
+    //       justifyContent: 'center',
+    //       alignItems: 'center',
+    //       borderRightWidth: 1,
+    //       borderBottomWidth: 1,
+    //       borderColor: 'white'
+    //     }}>
+    //     {props.icon && (
+    //       <Icon icon={props.icon} foreground={props.foreground} size={size} />
+    //     )}
+    //     {props.number > 0 && <Number number={props.number} />}
+    //     {props.header && (
+    //       <Text
+    //         adjustsFontSizeToFit={true}
+    //         style={{
+    //           color: props.foreground,
+    //           textAlign: 'center'
+    //         }}>
+    //         {props.header}
+    //       </Text>
+    //     )}
+    //     {props.value && <Text>{props.value}</Text>}
+    //     {props.time && <Time {...props} />}
+    //   </View>
+    // </TouchableOpacity>
   )
 }
 export default Tile
