@@ -51,8 +51,8 @@ const Tile = props => {
   const TileFrame = () => (
     <View
       style={{
-        width: 50,
-        height: 50,
+        width: size,
+        height: size,
         backgroundColor: background,
         justifyContent: 'center',
         alignItems: 'center',
@@ -84,36 +84,6 @@ const Tile = props => {
       )}>
       <TileFrame />
     </ConditionalWrap>
-    // <TouchableOpacity onPress={props.onPress}>
-    //   <View
-    //     style={{
-    //       width: size,
-    //       height: size,
-    //       backgroundColor: background,
-    //       justifyContent: 'center',
-    //       alignItems: 'center',
-    //       borderRightWidth: 1,
-    //       borderBottomWidth: 1,
-    //       borderColor: 'white'
-    //     }}>
-    //     {props.icon && (
-    //       <Icon icon={props.icon} foreground={props.foreground} size={size} />
-    //     )}
-    //     {props.number > 0 && <Number number={props.number} />}
-    //     {props.header && (
-    //       <Text
-    //         adjustsFontSizeToFit={true}
-    //         style={{
-    //           color: props.foreground,
-    //           textAlign: 'center'
-    //         }}>
-    //         {props.header}
-    //       </Text>
-    //     )}
-    //     {props.value && <Text>{props.value}</Text>}
-    //     {props.time && <Time {...props} />}
-    //   </View>
-    // </TouchableOpacity>
   )
 }
 export default Tile
