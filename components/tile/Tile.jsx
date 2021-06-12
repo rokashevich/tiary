@@ -10,7 +10,19 @@ const Tile = props => {
   const onPress = props.onPress ? props.onPress : null
   const background = props.background ? props.background : '#f0f'
   const foreground = props.foreground ? props.foreground : '#0ff'
+  const number = props.number ? props.number : null
+  const width = props.width ? props.width : 1
+  const height = props.height ? props.height : 1
+
+  // Наполнения три взаимоисключающих варианта:
+  // 1. Иконка, надпись, или иконка с надписью.
   const icon = props.icon ? props.icon : null
+  const label = props.label ? props.label : null
+  // 2. Временная отметка (для таблицы).
+  const timestamp = props.timestamp ? props.timestamp : null
+  // 3. Значения (для таблицы).
+  const values = props.values ? props.values : null
+  if (!icon && !label && !timestamp && !values) label = 'ERR'
 
   const Time = props => {
     const time = props.time
