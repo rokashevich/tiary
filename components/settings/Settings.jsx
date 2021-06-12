@@ -92,21 +92,23 @@ const Settings = () => {
       <ScrollView style={{ flex: 1 }}>
         {localCategories
           .map((category, i) => (
-            <View key={i}>
+            <View
+              key={i}
+              style={{
+                borderWidth: 2,
+                borderColor: 'green',
+                alignItems: 'flex-start'
+              }}>
               <Animated.View
                 {...{ id: category.id }}
                 style={{
-                  borderWidth: 1,
-                  borderColor: 'black',
-                  margin: 1,
-                  backgroundColor: category.background,
+                  flex: 0.5,
+                  borderWidth: 2,
+                  borderColor: 'red',
                   transform: [{ translateX: pan.x }, { translateY: pan.y }]
                 }}
                 {...panResponder.panHandlers}>
-                {/* <Tile text='xxx'></Tile> */}
-                <Text style={{ color: category.foreground }}>
-                  {category.description}
-                </Text>
+                <Tile label='xxx'></Tile>
               </Animated.View>
               {category.columns
                 .map((column, i) => (
@@ -114,9 +116,7 @@ const Settings = () => {
                     key={i}
                     style={{
                       borderWidth: 1,
-                      borderColor: 'black',
-                      margin: 1,
-                      marginRight: 25
+                      borderColor: 'cyan'
                     }}>
                     <Text>{externalDb[column].header}</Text>
                   </View>
