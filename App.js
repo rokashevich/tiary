@@ -60,17 +60,17 @@ const App = () => {
         for (const i in categories) {
           const category = categories[i]
           for (
-            let j = 0, number = 1;
+            let j = 0, badge = 1;
             j < category.columns.length;
-            j += valueColumnsMaxCount, number++
+            j += valueColumnsMaxCount, badge++
           ) {
             const columns = category.columns.slice(j, j + valueColumnsMaxCount)
             tabs.push({
               ...category,
               key: i + '' + j,
               columns,
-              number:
-                category.columns.length > valueColumnsMaxCount ? number : 0
+              badge:
+                category.columns.length > valueColumnsMaxCount ? badge : 0
             })
           }
         }

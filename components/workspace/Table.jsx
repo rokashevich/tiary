@@ -14,7 +14,7 @@ const Table = () => {
   const context = useContext(AppContext)
   const category = categories.find(x => x.id === context.tab[0])
   const tab = context.geometry.tabs.find(
-    x => x.id === context.tab[0] && x.number === context.tab[1]
+    x => x.id === context.tab[0] && x.badge === context.tab[1]
   )
 
   const renderItem = ({ item }) => {

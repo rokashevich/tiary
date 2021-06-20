@@ -1,7 +1,7 @@
 export const categories = [
   {
     id: 1,
-    description: 'Sport',
+    label: 'Sport',
     background: 'purple',
     icon: 'Backetball',
     foreground: 'red',
@@ -9,7 +9,7 @@ export const categories = [
   },
   {
     id: 2,
-    description: 'Автомобильные траты',
+    label: 'Автомобильные траты',
     background: 'blue',
     icon: 'Car',
     foreground: 'orange',
@@ -17,7 +17,7 @@ export const categories = [
   },
   {
     id: 3,
-    description: 'Учёт съеденного',
+    label: 'Учёт съеденного',
     background: 'green',
     icon: 'Food',
     foreground: 'yellow',
@@ -25,7 +25,7 @@ export const categories = [
   },
   {
     id: 4,
-    description: 'Учёт самообразования: прочитанного/прослушанного',
+    label: 'Учёт самообразования: прочитанного/прослушанного',
     background: 'yellow',
     icon: 'School',
     foreground: 'green',
@@ -33,7 +33,7 @@ export const categories = [
   },
   {
     id: 5,
-    description: 'Учёт медицинских показателей',
+    label: 'Учёт медицинских показателей',
     background: 'orange',
     icon: 'Hospital',
     foreground: 'blue',
@@ -43,14 +43,14 @@ export const categories = [
 
 export const externalDb = {
   1: {
-    header: 'ПОСЕЩЕНИЕ СТОМАТОЛОГА',
+    label: 'ПОСЕЩЕНИЕ СТОМАТОЛОГА',
     data: {
       202001151300: true,
       202009151302: true
     }
   },
   2: {
-    header: 'Бёрпи',
+    label: 'Бёрпи',
     data: {
       202009141259: 100,
       202009151301: 110,
@@ -74,7 +74,7 @@ export const externalDb = {
   },
 
   3: {
-    header: 'сист',
+    label: 'сист',
     data: {
       202009141259: 120,
       202009151301: 110,
@@ -83,7 +83,7 @@ export const externalDb = {
   },
 
   4: {
-    header: 'дист',
+    label: 'дист',
     data: {
       202009141259: 80,
       202009151301: 70,
@@ -92,7 +92,7 @@ export const externalDb = {
   },
 
   5: {
-    header: 'пульс',
+    label: 'пульс',
     data: {
       202009141259: 60,
       202009151301: 91,
@@ -102,7 +102,7 @@ export const externalDb = {
   },
 
   6: {
-    header: 'рублей',
+    label: 'рублей',
     data: {
       202009141259: 1000,
       202009151301: 1500,
@@ -111,7 +111,7 @@ export const externalDb = {
   },
 
   7: {
-    header: 'литров',
+    label: 'литров',
     data: {
       202009141259: 25,
       202009151301: 35,

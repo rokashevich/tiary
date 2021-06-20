@@ -29,7 +29,6 @@ const Settings = () => {
     new Animated.Value(-Dimensions.get('screen').width)
   ).current
   useEffect(() => {
-    console.log(localDb)
     Animated.timing(padding, {
       toValue: 0,
       duration: 333,
