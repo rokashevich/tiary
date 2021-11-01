@@ -23,7 +23,7 @@ const Header = props => {
             onPress: () => console.log(e, i),
             background: category.background,
             foreground: category.foreground,
-            header: externalDb[e].header
+            label: externalDb[e].label
           }}
         />
       ))}

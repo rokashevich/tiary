@@ -8,8 +8,8 @@ const Tile = props => {
   const size = context.geometry.tileSize
 
   const onPress = props.onPress
-  const background = props.background ? props.background : '#f0f'
-  const foreground = props.foreground ? props.foreground : '#0ff'
+  const background = props.background ? props.background : '#fff'
+  const foreground = props.foreground ? props.foreground : '#000'
   const badge = props.badge ? `${props.badge}` : null
   const scaleX = props.scaleX ? props.scaleX : 1
   const scaleY = props.scaleY ? props.scaleY : 1
@@ -64,19 +64,19 @@ const Tile = props => {
         borderColor: 'blue'
       }}>
       {icon && <Icon icon={icon} foreground={foreground} size={size} />}
-      {badge && <Badge badge={badge} />}
-      {props.header && (
+      {typeof label === 'string' && (
         <Text
           adjustsFontSizeToFit={true}
           style={{
             color: props.foreground,
             textAlign: 'center'
           }}>
-          {props.header}
+          label
         </Text>
       )}
       {props.value && <Text>{props.value}</Text>}
       {props.time && <Time {...props} />}
+      {badge && <Badge badge={badge} />}
     </View>
   )
 
